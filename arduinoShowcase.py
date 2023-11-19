@@ -4,7 +4,7 @@ import numpy as np
 from scipy.signal import butter , sosfilt , find_peaks
 
 
-s = sr.Serial('/dev/cu.usbmodem141301', 115200)
+s = sr.Serial('/dev/cu.usbmodem141201', 115200)
 plt.close('all')
 plt.figure()
 plt.ion()

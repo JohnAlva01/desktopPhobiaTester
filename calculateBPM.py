@@ -33,7 +33,7 @@ def doGenerateBPM():
     working = False
     while not working:
         try:
-            serialObj = SimpleSerial(115200, '/dev/cu.usbmodem141301')
+            serialObj = SimpleSerial(115200, '/dev/cu.usbmodem141201')
             valueList, timeStampList = serialObj.captureLines(testTimeMs)
             if len(valueList)==0 or len(timeStampList)==0:
                 print("failed")

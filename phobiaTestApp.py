@@ -1,23 +1,20 @@
 import tkinter as tk
 from tkinter import messagebox
 from PIL import ImageTk, Image
-import sqlite3
 from numpy import random
-import pyglet
 import calculateBPM as calcB
 from os import listdir
 import os
 
-import psutil
-import time as t
 
 
-folder_dir = "/Users/johnalvaro/Documents/desktopPhobiaTester/Application/Image"
+# folder_dir = "/Users/johnalvaro/Documents/desktopPhobiaTester/Application/Image"
+folder_dir = './Image'
 imageObj = []
 for images in os.listdir(folder_dir):
 	# check if the image ends with png
 	if (images.endswith(".jpeg")):
-		# print(images)
+		print(images)
 		imageObj.append(images)
 
 # set colours
@@ -46,7 +43,7 @@ def load_frame1():
 	frame1.tkraise()
 	# prevent widgets from modifying the frame
 	frame1.pack_propagate(False)
-	old_img = Image.open('/Users/johnalvaro/Documents/desktopPhobiaTester/Application/Logo/phobiatestlogo.png')
+	old_img = Image.open('./Logo/phobiatestlogo.png')
 	resize_old = old_img.resize((200,150))
 	logo_img = ImageTk.PhotoImage(resize_old)
 	logo_widget = tk.Label(frame1, image=logo_img, bg=bg_colour)
@@ -124,10 +121,9 @@ def load_frame2():
 	i = 0
 	while i < target:
 		imName = imageObj[i]
-		path_name= '/Users/johnalvaro/Documents/desktopPhobiaTester/Application/'
 		# phobiaName = imageObj[i].split('/')[1].split('.')[0]
 		phobiaName = imageObj[i].split('.')[0]
-		img = Image.open(path_name+'Image/'+imName)
+		img = Image.open('./Image/'+imName)
 		img.show()
 		bpm = calcB.doGenerateBPM()
 		bpmCount[phobiaName] = bpm
@@ -187,7 +183,10 @@ def load_frame3():
 		).pack(pady=25, padx=25)
 	
 	for phobia in maxPhobia:
-		tk.Label(frame3,text='{} | BPM: {}'.format(phobia,bpmCount[phobia]),bg=bg_colour,font=('Shanti',15)).pack(pady=15, padx=15)
+		a = phobia.split('_')
+		phobiaName = a[0]
+		pictureName = a[1]
+		tk.Label(frame3,text='{} | {} | BPM: {}'.format(pictureName, phobiaName,bpmCount[phobia]),bg=bg_colour,font=('Shanti',15)).pack(pady=15, padx=15)
 	
 	tk.Label(
 		frame3, 
@@ -198,7 +197,10 @@ def load_frame3():
 		).pack(pady=25, padx=25)
 	
 	for phobia in lowPhobia:
-		tk.Label(frame3,text='{} | BPM: {}'.format(phobia,bpmCount[phobia]),bg=bg_colour,font=('Shanti',15)).pack(pady=15, padx=15)
+		a = phobia.split('_')
+		phobiaName = a[0]
+		pictureName = a[1]
+		tk.Label(frame3,text='{} | {} | BPM: {}'.format(pictureName, phobiaName ,bpmCount[phobia]),bg=bg_colour,font=('Shanti',15)).pack(pady=15, padx=15)
 		
 
 	
