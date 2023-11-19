@@ -20,7 +20,7 @@ calculate = True
 while i < 500:
     a = s.readline()
     a.decode()
-    #print(a)
+    print('this is a decoded\n',a)
     b = a.split(b',')
     print(b)
     valueList.append(float(b[0]))
@@ -56,11 +56,18 @@ if calculate:
 
     # plots the graph
     plt.plot(timeMSList, valueList, label = 'original')
-    plt.plot(interpTime, filteredSignal, label = "filtered")
+    # might not do filter
+    # plt.plot(interpTime, filteredSignal, label = "filtered")
     # plt.stem(interpTime, peakList, label = 'peaks')
     plt.stem(timeMSList, unPeakList, label = 'peaks')
-    plt.legend()
+    plt.xlabel('Time [ms]')
+    plt.ylabel('Sensor Value')
+    plt.title('ECG Signal Graph')
+
+    plt.legend(loc = 4)
     print('Showing plot')
     plt.show()
 
     input()
+
+    plt.close()
